@@ -13,14 +13,18 @@ JenkinsRadiator.JobsCollection = Backbone.Collection.extend({
       return $.ajax(params);
   },
   parse: function(response) {
-      this.filteredJobsCount = _.filter(response.jobs, function(job){
-          return _.include(config.filtered, job.name);
-      }).length;
-      return response.jobs;
+	  this.allJobs = response.jobs;
+      this.excludedJobs = _.filter(response.jobs, function(job){
+          return _.include(config.excludeFilter, job.name) || (config.includeFilter.length>0 && !_.include(config.includeFilter, job.name));
+      });
+      this.includedJobs = _.filter(response.jobs, function(job){
+    	  return !_.include(config.excludeFilter, job.name) && (config.includeFilter.length<1 || _.include(config.includeFilter, job.name));
+      });
+      return this.includedJobs;
   },
   failingBuilds:function(){
       var builds = this.filter(function(job){
-         return (job.get("color") == "red" || job.get("color") == "red_anime") && !_.include(config.filtered, job.get("name"));;
+         return (job.get("color") == "red" || job.get("color") == "red_anime") && !_.include(config.excludeFilter, job.get("name"));;
       });
       return builds;
   },
@@ -32,7 +36,7 @@ JenkinsRadiator.JobsCollection = Backbone.Collection.extend({
   },
   failingCount:function(){
       var builds = this.filter(function(job){
-         return (job.get("color") == "red" || job.get("color") == "red_anime") && !_.include(config.filtered, job.get("name"));;
+         return (job.get("color") == "red" || job.get("color") == "red_anime") && !_.include(config.excludeFilter, job.get("name"));;
       });
       return builds.length;
   },
@@ -128,11 +132,7 @@ JenkinsRadiator.RadiatorView = Backbone.View.extend({
         };
     },
     addPassingIcon: function(){
-        if(this.jobList.filteredJobsCount > 0){
-            $('.build-health-wrapper .build-health .icon').html('<span>Builds We Ignore: ' + this.jobList.filteredJobsCount + '</span>');
-        }else{
-            $('.build-health-wrapper .build-health .icon').html('<i class="icon-heart icon-white"></i>');
-        }
+        $('.build-health-wrapper .build-health .icon').html('<i class="icon-heart icon-white"></i>');
     }
 });
 
