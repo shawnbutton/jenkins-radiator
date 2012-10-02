@@ -1,8 +1,9 @@
-JenkinsRadiator.Job = Backbone.Model.extend({
+// This represents a Jenkins job
+var Job = Backbone.Model.extend({
 });
 
-JenkinsRadiator.JobsCollection = Backbone.Collection.extend({
-  model: JenkinsRadiator.Job,
+var JobsCollection = Backbone.Collection.extend({
+  model: Job,
   sync: function(method, model, options) {
       var params = _.extend({
           type: 'GET',
@@ -63,7 +64,7 @@ JenkinsRadiator.JobsCollection = Backbone.Collection.extend({
 
 });
 
-JenkinsRadiator.JobView = Backbone.View.extend({
+var JobView = Backbone.View.extend({
   className:"job-view",
 
   events: {
@@ -82,7 +83,7 @@ JenkinsRadiator.JobView = Backbone.View.extend({
   }
 });
 
-JenkinsRadiator.RadiatorView = Backbone.View.extend({
+var RadiatorView = Backbone.View.extend({
     initialize: function(){
         _.bindAll(this, 'render');
         this.jobList = this.options.collection;
@@ -106,10 +107,10 @@ JenkinsRadiator.RadiatorView = Backbone.View.extend({
         }
     },
     renderMetrics: function(){
-        var passingBuildsView  = new JenkinsRadiator.BuildMetricView({"title":"Passing", "count":this.jobList.passingCount()});
-        var failingBuildsView  = new JenkinsRadiator.BuildMetricView({"title":"Failing", "count":this.jobList.failingCount()});
-        var buildingBuildsView = new JenkinsRadiator.BuildMetricView({"title":"Building", "count":this.jobList.buildingCount()});
-        var disabledBuildsView = new JenkinsRadiator.BuildMetricView({"title":"Disabled", "count":this.jobList.disabledCount()});
+        var passingBuildsView  = new BuildMetricView({"title":"Passing", "count":this.jobList.passingCount()});
+        var failingBuildsView  = new BuildMetricView({"title":"Failing", "count":this.jobList.failingCount()});
+        var buildingBuildsView = new BuildMetricView({"title":"Building", "count":this.jobList.buildingCount()});
+        var disabledBuildsView = new BuildMetricView({"title":"Disabled", "count":this.jobList.disabledCount()});
 
         $(".build-metrics-wrapper .build-metric.passing-count").html(passingBuildsView.render().el);
         $(".build-metrics-wrapper .build-metric.failing-count").html(failingBuildsView.render().el);
@@ -123,7 +124,7 @@ JenkinsRadiator.RadiatorView = Backbone.View.extend({
             $(".build-health").html("");
             $('.build-health-wrapper .build-health').addClass("failing");
             _.each(this.jobList.failingBuilds(), function(job){
-                $(".build-health").append(new JenkinsRadiator.JobView({model:job}).render().el);
+                $(".build-health").append(new JobView({model:job}).render().el);
             });
         }else{
             $('.build-health-wrapper .build-health').addClass("passing");
@@ -136,7 +137,7 @@ JenkinsRadiator.RadiatorView = Backbone.View.extend({
     }
 });
 
-JenkinsRadiator.BuildMetricView = Backbone.View.extend({
+var BuildMetricView = Backbone.View.extend({
     initialize: function(){
         _.bindAll(this, 'render');
     },
@@ -148,7 +149,7 @@ JenkinsRadiator.BuildMetricView = Backbone.View.extend({
     }
 });
 
-JenkinsRadiator.Router = Backbone.Router.extend({
+var AppRouter = Backbone.Router.extend({
     routes: {
         "":"home"
     },
@@ -156,8 +157,8 @@ JenkinsRadiator.Router = Backbone.Router.extend({
     home:function(){
     	this.selectConfig();
     	this.renderTitle();
-        var jobList = new JenkinsRadiator.JobsCollection();
-        var radiatorView = new JenkinsRadiator.RadiatorView({"collection":jobList});
+        var jobList = new JobsCollection();
+        var radiatorView = new RadiatorView({"collection":jobList});
         jobList.fetch({success: function(){
             radiatorView.render();
         }});

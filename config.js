@@ -3,18 +3,11 @@
 
 var configs = [
 {
-	ci_json_url:"http://ci.example.com/api/json",
+	ci_json_url:"https://builds.apache.org/api/json",
     refresh_interval: 12000,
-    radiatorTitle: 'Radiator 1 title',
-    excludeFilter: ["Excluded build name"],
-    includeFilter: ["Included build name"]
-},
-{
-	ci_json_url:"http://ci.example.com/api/json",
-    refresh_interval: 12000,
-    radiatorTitle: 'Radiator 2 title',
-    excludeFilter: ["Excluded build name"],
-    includeFilter: ["Included build name"]
+    radiatorTitle: 'Apache jobs',
+    excludeFilter: [],
+    includeFilter: ["ActiveMQ","Apache Wicket 6.0.x","Commons"]
 }
 ];
 

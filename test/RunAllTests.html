@@ -1,39 +1,29 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" href="lib/qunit.css" type="text/css" media="screen"/>
-
-    <!-- Core Libraries -->
-    <script src="../lib/jquery-1.7.2.min.js"></script>
-    <script src="../lib/underscore-min.js"></script>
-    <script src="../lib/backbone-min.js"></script>
-    <script src="../lib/mustache.js"></script>
-    <script src="../lib/jquery.jsonp-2.3.1.js"></script>
-    <!-- Radiator Source Files -->
-    <script src="../src/radiator.js"></script>
-
-
+    <meta charset="utf-8">
     <!-- Test Frameworks -->
-    <script type="text/javascript" src="lib/qunit.js"></script>
-    <script type="text/javascript" src="lib/sinon.js"></script>
-    <script type="text/javascript" src="lib/sinon-qunit.js"></script>
-    <script type="text/javascript" src="lib/pavlov.js"></script>
-
-    <!-- Unit Tests -->
-    <script src="src/radiatorTest.js"></script>
-
+    <link rel="stylesheet" href="lib/qunit-1.10.0.css" type="text/css" media="screen"/>
 
 </head>
 <body>
-<h1 id="qunit-header">Jenkins Radiator</h1>
+    <div id="qunit"></div>
 
-<h2 id="qunit-banner"></h2>
+    <!-- QUnit library -->
+    <script src="lib/qunit-1.10.0.js"></script>
 
-<div id="qunit-testrunner-toolbar"></div>
-<h2 id="qunit-userAgent"></h2>
-<ol id="qunit-tests"></ol>
-<div id="qunit-fixture">
-    <div id='input-template'></div>
-</div>
+    <!-- Our main libraries -->
+    <script src="../lib/jquery-1.8.2.min.js"></script>
+    <script src="../lib/underscore-min.js"></script>
+    <script src="../lib/backbone-min.js"></script>
+    <script src="../lib/jquery.fittext.js"></script>
+    <script src="../lib/jquery.jsonp-2.3.1.min.js"></script>
+    <script src="../lib/mustache.js"></script>
+    <!-- The javascript being tested -->
+    <script src="../src/radiator.js"></script>
+
+    <!-- Unit Tests -->
+    <script src="src/learningtests.js"></script>
+    <script src="src/unittests.js"></script>
+
 </body>
 </html>
