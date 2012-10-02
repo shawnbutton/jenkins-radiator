@@ -154,6 +154,7 @@ JenkinsRadiator.Router = Backbone.Router.extend({
     },
 
     home:function(){
+    	this.renderTitle();
         var jobList = new JenkinsRadiator.JobsCollection();
         var radiatorView = new JenkinsRadiator.RadiatorView({"collection":jobList});
         jobList.fetch({success: function(){
@@ -168,5 +169,10 @@ JenkinsRadiator.Router = Backbone.Router.extend({
             }, config.refresh_interval);
         }
         fetchAndDisplay();
+    },
+    
+    renderTitle:function(){
+	    $("#radiatorTitle").html(config.radiatorTitle);
+	    $(document).attr('title',config.radiatorTitle);
     }
 })

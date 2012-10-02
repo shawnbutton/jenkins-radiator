@@ -29,6 +29,10 @@ body{
   color:#333;
 }
 
+.radiator-title-wrapper{
+	text-align:center;
+}
+
 .build-metrics-wrapper{
   position:absolute;
   bottom:0;
