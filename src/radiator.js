@@ -154,6 +154,7 @@ JenkinsRadiator.Router = Backbone.Router.extend({
     },
 
     home:function(){
+    	this.selectConfig();
     	this.renderTitle();
         var jobList = new JenkinsRadiator.JobsCollection();
         var radiatorView = new JenkinsRadiator.RadiatorView({"collection":jobList});
@@ -174,5 +175,30 @@ JenkinsRadiator.Router = Backbone.Router.extend({
     renderTitle:function(){
 	    $("#radiatorTitle").html(config.radiatorTitle);
 	    $(document).attr('title',config.radiatorTitle);
-    }
-})
+    },
+    
+    selectConfig: function(){
+    	var idx=parseInt(this.getRequestParameter("config"), 10);
+    	if(idx){
+    		if(idx>=configs.length){
+    			idx=0;
+    		}else if(idx<0){
+    			idx=0;
+    		}
+    		config = configs[idx];
+    	}
+    },
+    
+    getRequestParameter: function(paramName) {
+    	  var searchString = window.location.search.substring(1),
+    	      i, val, params = searchString.split("&");
+
+    	  for (i=0;i<params.length;i++) {
+    	    val = params[i].split("=");
+    	    if (val[0] == paramName) {
+    	      return unescape(val[1]);
+    	    }
+    	  }
+    	  return null;
+    }    
+});
