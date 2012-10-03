@@ -21,8 +21,8 @@ or from a failing state to a passing state.
 * Edit `config.js` and set the `refresh_interval` to something other than 1 minute
 * If your Jenkins has multiple jobs and your only interested in some of them, configure the include and exclude filters
 * If you want to display multiple radiators of different projects on a screen, you can configure them all in the config.js.
-** Set radiatorTitle to identify them from each other
-** Open index.html?config=<index of wanted config> to view the desired radiator
+    * Set radiatorTitle to identify them from each other
+    * Open index.html?config=<index of wanted config> to view the desired radiator
 
 ### Screenshots
 
