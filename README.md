@@ -22,7 +22,7 @@ or from a failing state to a passing state.
 * If your Jenkins has multiple jobs and your only interested in some of them, configure the include and exclude filters
 * If you want to display multiple radiators of different projects on a screen, you can configure them all in the config.js.
     * Set radiatorTitle to identify them from each other
-    * Open index.html?config=<index of wanted config> to view the desired radiator
+    * Open index.html?config=3 to view the radiator number 4 etc.
 
 ### Screenshots
 
