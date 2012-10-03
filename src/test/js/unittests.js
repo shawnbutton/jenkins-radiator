@@ -135,3 +135,16 @@ test("Exclude and include filters work together 2", function(){
     equal(jobCollection.excludedJobs.length, 8);
 
 });
+
+test("Job model accepts Jenkins JSON API data", function(){
+    config.includeFilter = ["ACE-trunk"];
+    var jobCollection = new JobsCollection();
+    jobCollection.parse(json);
+    equal(jobCollection.includedJobs.length, 1);
+    var job = jobCollection.includedJobs[0];
+    ok(job);
+    equal("yellow",job.color);
+    equal("ACE-trunk",job.name);
+    equal("https://builds.apache.org/job/ACE-trunk/",job.url);
+});
+

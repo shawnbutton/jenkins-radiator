@@ -2,6 +2,7 @@
 var Job = Backbone.Model.extend({
 });
 
+// This represents all the jobs as listed by the Jenkins JSON API
 var JobsCollection = Backbone.Collection.extend({
   model: Job,
   sync: function(method, model, options) {
