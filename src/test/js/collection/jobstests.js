@@ -1,5 +1,5 @@
 module("collection/jobs");
 test("Baz", function(){
-    var jobCollection = new JobsCollection();
+    var jobCollection = new JR.JobCollection();
     ok(jobCollection);
 });

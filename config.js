@@ -3,8 +3,8 @@
 
 var configs = [
 {
-	ci_json_url:"https://builds.apache.org/api/json",
-    refresh_interval: 12000,
+	ci_json_url:"https://builds.apache.org",
+    refresh_interval: 24000,
     radiatorTitle: 'Apache jobs',
     excludeFilter: [],
     includeFilter: ["ActiveMQ","Apache Wicket 6.0.x","Commons"]

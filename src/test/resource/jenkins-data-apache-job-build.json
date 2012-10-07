@@ -1,0 +1,288 @@
+{
+    "actions": [
+        {
+            "causes": [
+                {
+                    "shortDescription": "Started by an SCM change"
+                }
+            ]
+        },
+        {},
+        {},
+        {},
+        {
+            "failCount": 0,
+            "skipCount": 0,
+            "totalCount": 1130,
+            "urlName": "testReport"
+        },
+        {},
+        {},
+        {},
+        {}
+    ],
+    "artifacts": [],
+    "building": false,
+    "builtOn": "ubuntu4",
+    "changeSet": {
+        "items": [
+            {
+                "affectedPaths": [
+                    "activemq-core/pom.xml"
+                ],
+                "author": {
+                    "absoluteUrl": "https://builds.apache.org/user/gtully",
+                    "fullName": "gtully"
+                },
+                "commitId": "1394734",
+                "date": "2012-10-05T19:05:28.793761Z",
+                "msg": "revert the change to defalut included for surefire, there are a bunch of non tests in there. *Test.* is needed",
+                "paths": [
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-core/pom.xml"
+                    }
+                ],
+                "revision": 1394734,
+                "timestamp": -1,
+                "user": "gtully"
+            },
+            {
+                "affectedPaths": [
+                    "activemq-core/src/test/java/org/apache/activemq/usecases/DurableSubsOfflineSelectorIndexUseTest.java",
+                    "kahadb/src/main/java/org/apache/kahadb/index/BTreeNode.java",
+                    "kahadb/src/main/java/org/apache/kahadb/index/ListNode.java",
+                    "kahadb/src/main/java/org/apache/kahadb/page/Transaction.java"
+                ],
+                "author": {
+                    "absoluteUrl": "https://builds.apache.org/user/gtully",
+                    "fullName": "gtully"
+                },
+                "commitId": "1394733",
+                "date": "2012-10-05T19:04:59.773509Z",
+                "msg": "https://issues.apache.org/jira/browse/AMQ-4094 - offline durable subs with selectors can lead to page leaks in the index and bloat of db.data in kahadb - fix up page caching on overflow and btree free on remove. test that validates the inuse page count for specific intervals",
+                "paths": [
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-core/src/test/java/org/apache/activemq/usecases/DurableSubsOfflineSelectorIndexUseTest.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/kahadb/src/main/java/org/apache/kahadb/index/BTreeNode.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/kahadb/src/main/java/org/apache/kahadb/index/ListNode.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/kahadb/src/main/java/org/apache/kahadb/page/Transaction.java"
+                    }
+                ],
+                "revision": 1394733,
+                "timestamp": -1,
+                "user": "gtully"
+            },
+            {
+                "affectedPaths": [
+                    "activemq-core/src/main/java/org/apache/activemq/broker/region/Topic.java",
+                    "activemq-core/src/test/java/org/apache/activemq/usecases/DurableSubscriptionSelectorTest.java"
+                ],
+                "author": {
+                    "absoluteUrl": "https://builds.apache.org/user/gtully",
+                    "fullName": "gtully"
+                },
+                "commitId": "1394732",
+                "date": "2012-10-05T19:04:18.413721Z",
+                "msg": "polish: some typos",
+                "paths": [
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-core/src/main/java/org/apache/activemq/broker/region/Topic.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-core/src/test/java/org/apache/activemq/usecases/DurableSubscriptionSelectorTest.java"
+                    }
+                ],
+                "revision": 1394732,
+                "timestamp": -1,
+                "user": "gtully"
+            },
+            {
+                "affectedPaths": [
+                    "activemq-amqp/pom.xml",
+                    "activemq-amqp/src/test-swiftmq",
+                    "activemq-amqp/src/test-swiftmq/java",
+                    "activemq-amqp/src/test-swiftmq/java/org",
+                    "activemq-amqp/src/test-swiftmq/java/org/apache",
+                    "activemq-amqp/src/test-swiftmq/java/org/apache/activemq",
+                    "activemq-amqp/src/test-swiftmq/java/org/apache/activemq/transport",
+                    "activemq-amqp/src/test-swiftmq/java/org/apache/activemq/transport/amqp",
+                    "activemq-amqp/src/test-swiftmq/java/org/apache/activemq/transport/amqp/SwiftMQClientTest.java",
+                    "activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/SwiftMQClientTest.java"
+                ],
+                "author": {
+                    "absoluteUrl": "https://builds.apache.org/user/chirino",
+                    "fullName": "chirino"
+                },
+                "commitId": "1394682",
+                "date": "2012-10-05T17:40:15.108414Z",
+                "msg": "Only test using the SwitfMQ client libs if they are available in the users env.",
+                "paths": [
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/pom.xml"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq/java"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq/java/org"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq/java/org/apache"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq/java/org/apache/activemq"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq/java/org/apache/activemq/transport"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq/java/org/apache/activemq/transport/amqp"
+                    },
+                    {
+                        "editType": "add",
+                        "file": "/activemq/trunk/activemq-amqp/src/test-swiftmq/java/org/apache/activemq/transport/amqp/SwiftMQClientTest.java"
+                    },
+                    {
+                        "editType": "delete",
+                        "file": "/activemq/trunk/activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/SwiftMQClientTest.java"
+                    }
+                ],
+                "revision": 1394682,
+                "timestamp": -1,
+                "user": "chirino"
+            },
+            {
+                "affectedPaths": [
+                    "activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AMQPSslTransportFactory.java",
+                    "activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpNioTransportFactory.java",
+                    "activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpProtocolConverter.java",
+                    "activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpTransportFactory.java",
+                    "activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpTransportFilter.java",
+                    "activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/transform/JMSMappingInboundTransformer.java",
+                    "activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/transform/JMSMappingOutboundTransformer.java",
+                    "activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/JMSClientTest.java",
+                    "activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/joram/ActiveMQAdmin.java",
+                    "activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/joram/JoramJmsTest.java"
+                ],
+                "author": {
+                    "absoluteUrl": "https://builds.apache.org/user/chirino",
+                    "fullName": "chirino"
+                },
+                "commitId": "1394677",
+                "date": "2012-10-05T17:35:07.725492Z",
+                "msg": "Fixin deadlock in amqp impl.  Improved message mapping support and commented out the failing Joram test cases.",
+                "paths": [
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AMQPSslTransportFactory.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpNioTransportFactory.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpProtocolConverter.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpTransportFactory.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/AmqpTransportFilter.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/transform/JMSMappingInboundTransformer.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/main/java/org/apache/activemq/transport/amqp/transform/JMSMappingOutboundTransformer.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/JMSClientTest.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/joram/ActiveMQAdmin.java"
+                    },
+                    {
+                        "editType": "edit",
+                        "file": "/activemq/trunk/activemq-amqp/src/test/java/org/apache/activemq/transport/amqp/joram/JoramJmsTest.java"
+                    }
+                ],
+                "revision": 1394677,
+                "timestamp": -1,
+                "user": "chirino"
+            }
+        ],
+        "kind": "svn",
+        "revisions": [
+            {
+                "module": "https://svn.apache.org/repos/asf/activemq/trunk",
+                "revision": 1394734
+            }
+        ]
+    },
+    "culprits": [
+        {
+            "absoluteUrl": "https://builds.apache.org/user/chirino",
+            "fullName": "chirino"
+        },
+        {
+            "absoluteUrl": "https://builds.apache.org/user/davsclaus",
+            "fullName": "davsclaus"
+        },
+        {
+            "absoluteUrl": "https://builds.apache.org/user/dejanb",
+            "fullName": "dejanb"
+        },
+        {
+            "absoluteUrl": "https://builds.apache.org/user/gtully",
+            "fullName": "gtully"
+        },
+        {
+            "absoluteUrl": "https://builds.apache.org/user/tabish",
+            "fullName": "tabish"
+        }
+    ],
+    "description": null,
+    "duration": 4137179,
+    "estimatedDuration": 28596826,
+    "executor": null,
+    "fullDisplayName": "ActiveMQ #1094",
+    "id": "2012-10-06_02-08-46",
+    "keepLog": false,
+    "mavenArtifacts": null,
+    "mavenVersionUsed": "3.0.3",
+    "number": 1094,
+    "result": "FAILURE",
+    "timestamp": 1349489326584,
+    "url": "https://builds.apache.org/job/ActiveMQ/1094/"
+}

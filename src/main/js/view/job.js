@@ -1,17 +1,17 @@
-var JobView = Backbone.View.extend({
+JR.JobView = Backbone.View.extend({
+    // TODO: This is a "Job state view, displaying only the name & color indicating state"
     className:"job-view",
-
-    events: {
-        // 'click button#add': 'callback'
-    },
 
     initialize: function(){
         _.bindAll(this, 'render');
     },
 
     render: function(){
-        var template = $("#jobViewTemplate").html();
-        $(this.el).append(Mustache.to_html(template, this.model.toJSON()));
+        var template = "<span style=\"width:100%\"><h1>{{name}}</h1></span>";
+        var json = this.model.toJSON();
+        console.log("Model as json: " + JSON.stringify(json));
+        var output = Mustache.to_html(template, json);
+        $(this.el).html(output);
         $(this.el).addClass(this.model.get("color"));
         return this;
     }

@@ -6,12 +6,20 @@ body{
   padding:0;
 }
 
-.build-health.passing {
+.build-metric .Passing-count {
   background-color: lightgreen;
 }
 
-.build-health.failing {
+.build-metric .Failing-count {
   padding: 0 20px;
+}
+
+.build-metric .Building-count {
+
+}
+
+.build-metric .Disabled-count {
+
 }
 
 .build-health.passing div.icon{
@@ -81,50 +89,12 @@ body{
 }
 
 
-.job-view.red_anime{
-  background-color: DarkOrchid;
-  -webkit-background-size: 30px 30px;
-  -moz-background-size: 30px 30px;
-  background-size: 30px 30px;
-  background-image: -webkit-gradient(linear, left top, right bottom,
-    color-stop(.25, rgba(255, 255, 255, .15)), color-stop(.25, transparent),
-    color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)),
-    color-stop(.75, rgba(255, 255, 255, .15)), color-stop(.75, transparent),
-    to(transparent));
-    background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-    transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-    transparent 75%, transparent);
-    background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-    transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-    transparent 75%, transparent);
-    background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-    transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-    transparent 75%, transparent);
-    background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-    transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-    transparent 75%, transparent);
-    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-    transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-    transparent 75%, transparent);
-    -webkit-animation: animate-stripes 3s linear infinite;
-    -moz-animation: animate-stripes 3s linear infinite;
-  }
-
-  @-webkit-keyframes animate-stripes {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 60px 0;
-    }
-
-  }
-
-  @-moz-keyframes animate-stripes {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 60px 0;
-    }
+.job-view.red_anime, .job-view.red{
+  background-color: red;
+}
+.job-view.blue_anime, .job-view.blue{
+    background-color: blue;
+}
+.job-view.disabled{
+    background-color: grey;
 }
