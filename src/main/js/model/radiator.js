@@ -40,22 +40,22 @@ JR.Radiator = Backbone.Model.extend({
 
         console.log("Filtering included jobs, length=" + this.getIncludedJobs().length);
         var failingJobs = _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
-            return (job.get("color") == "red" || job.get("color") == "red_anime") && !_.include(this.getExcludeFilter(), job.get("name"));
+            return job.isFailing();
         }, this);
         this.set('failingJobs', failingJobs, {silent: true});
 
         var passingJobs = _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
-            return job.get("color") == "blue" || job.get("color") == "blue_anime";
+            return job.isPassing();
         }, this);
         this.set('passingJobs', passingJobs, {silent: true});
 
         var buildingJobs = _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
-            return job.get("color") == "red_anime" || job.get("color") == "blue_anime";
+            return job.isBuilding();
         }, this);
         this.set('buildingJobs', buildingJobs, {silent: true});
 
         var disabledJobs= _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
-            return job.get("color") == "grey";
+            return job.isDisabled();
         }, this);
         this.set('disabledJobs', disabledJobs, {silent: true});
 

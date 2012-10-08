@@ -124,6 +124,10 @@ test("When exclude filter is defined, only non excluded jobs from build server a
     ok(radiator.getIncludedJobs(), "Radiator has expected jobs array");
     equal(radiator.getIncludedJobs().length, 7, "Radiator has expected amount of included jobs in array");
     equal(radiator.getIncludedJobsCount(), 7, "Radiator reports expected amount of included jobs");
+    equal(radiator.getFailingJobsCount(), 1, "Radiator reports expected amount of failing jobs");
+    equal(radiator.getPassingJobsCount(), 3, "Radiator reports expected amount of passing jobs");
+    equal(radiator.getBuildingJobsCount(), 2, "Radiator reports expected amount of building jobs");
+    equal(radiator.getDisabledJobsCount(), 1, "Radiator reports expected amount of disabled jobs");
 });
 
 
