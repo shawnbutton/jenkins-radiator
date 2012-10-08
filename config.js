@@ -2,13 +2,21 @@
 // e.g. http://ci.example.com/api/json
 
 var configs = [
-{
-	ci_json_url:"https://builds.apache.org",
-    refresh_interval: 24000,
-    radiatorTitle: 'Apache jobs',
-    excludeFilter: [],
-    includeFilter: ["ActiveMQ","Apache Wicket 6.0.x","Commons"]
-}
+    {
+        ci_json_url:"https://builds.apache.org",
+        refresh_interval: 24000,
+        radiatorTitle: 'A few Apache jobs',
+        excludeFilter: [],
+        includeFilter: ["ActiveMQ","Apache Wicket 6.0.x","Commons"]
+    },
+    {
+        ci_json_url:"https://builds.apache.org",
+        refresh_interval: 24000,
+        radiatorTitle: 'Only most likely passing Apache jobs',
+        excludeFilter: [],
+        includeFilter: ["Accumulo-1.3.x","Apache Wicket 1.4.x"]
+    }
+
 ];
 
 // By default use first config.

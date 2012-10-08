@@ -4,8 +4,9 @@ JR.HelpView = Backbone.View.extend({
     tagName: "div",
     className: "build-health-wrapper row-fluid",
     render: function(){
+        var idx=0;
         _.each(this.options.configs, function(config){
-            this.$el.append("<p>" + JSON.stringify(config) + "</p>");
+            this.$el.append(new JR.ConfigView({config: config, configIdx: idx++}).render().el);
         }, this);
         return this;
     }
