@@ -9,7 +9,7 @@ JR.JobView = Backbone.View.extend({
     render: function(){
         var template = "<span style=\"width:100%\"><h1>{{name}}</h1></span>";
         var json = this.model.toJSON();
-        console.log("Model as json: " + JSON.stringify(json));
+        LOG.debug("Model as json: " + JSON.stringify(json));
         var output = Mustache.to_html(template, json);
         $(this.el).html(output);
         $(this.el).addClass(this.model.get("color"));

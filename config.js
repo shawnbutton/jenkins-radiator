@@ -15,9 +15,20 @@ var configs = [
         radiatorTitle: 'Only most likely passing Apache jobs',
         excludeFilter: [],
         includeFilter: ["Accumulo-1.3.x","Apache Wicket 1.4.x"]
+    },
+    {
+        ci_json_url:"https://builds.apache.org",
+        refresh_interval: 24000,
+        radiatorTitle: 'All Apache jobs',
+        excludeFilter: [],
+        includeFilter: []
     }
 
 ];
+
+var loggingConfig = {
+    debug: false
+}
 
 // By default use first config.
 // Url parameter config=1 can be used to select another, like this:

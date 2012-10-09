@@ -3,18 +3,18 @@ JR.BuildServer = JR.BaseModel.extend({
     idAttribute: "url",
     url: function(){
         var url = this.urlRoot() + this.urlPostfixForJsonApi;
-        console.log("Returning url of build server: " + url);
+        LOG.debug("Returning url of build server: " + url);
         return url;
     },
     sync: function(method, model, options) {
-        console.log("About to sync. Method " + method + ", options=" + JSON.stringify(options));
+        LOG.debug("About to sync. Method " + method + ", options=" + JSON.stringify(options));
         var params = _.extend({
             type: 'GET',
             dataType: 'jsonp',
             processData: true,
             url: this.url() + "?jsonp=?"
         }, options);
-        console.log("Final url " + params.url);
+        LOG.debug("Final url " + params.url);
         return $.ajax(params);
     },
     relations: [{

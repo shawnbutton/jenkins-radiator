@@ -29,7 +29,7 @@ JR.ConfigView = Backbone.View.extend({
             "</span>";
         var json = this.options.config;
         json.idx = this.options.configIdx;
-        console.log("Rendering config view from " + JSON.stringify(json));
+        LOG.debug("Rendering config view from " + JSON.stringify(json));
         var output = Mustache.to_html(template, json);
         $(this.el).html(output);
         return this;
