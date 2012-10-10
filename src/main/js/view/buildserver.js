@@ -8,12 +8,18 @@ JR.BuildServerView = Backbone.View.extend({
         this.model.bind('change', this.render);
     },
     render: function(){
-        LOG.debug("Rendering buildserver view");
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Rendering buildserver view");
+        }
         _.each(this.model.getJobs().toArray(), function(job){
-            LOG.debug("Appending job to output: " + JSON.stringify(job));
+            if(LOG.isDebugEnabled()){
+                LOG.debug("Appending job to output: " + JSON.stringify(job));
+            }
             this.$el.append(new JR.JobView({model:job}).render().el);
         }, this);
-        LOG.debug("Setting #container content to " + this.el );
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Setting #container content to " + this.el );
+        }
         $('#container').html(this.el);
         return this;
     }

@@ -16,29 +16,41 @@ JR.Radiator = Backbone.Model.extend({
         }
     },
     initialize: function(){
-        LOG.debug("Initialize of Radiator model called");
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Initialize of Radiator model called");
+        }
         _.bindAll(this, 'processChangedBuildServer');
         //this.bind("change", this.processChangedBuildServer);
         // Do the initial preprocessing after consructing this model
         this.processChangedBuildServer();
     },
     processChangedBuildServer: function(){
-        LOG.debug("processChangedBuildServer of Radiator model called, context = " + JSON.stringify(this));
-        LOG.debug("Include filter in radiator model processChangedBuildServer: " + this.getIncludeFilter());
-        LOG.debug("Exclude filter in radiator model processChangedBuildServer: " + this.getExcludeFilter());
-        LOG.debug("buildServer in radiator model processChangedBuildServer: " + this.get('buildServer'));
+        if(LOG.isDebugEnabled()){
+            LOG.debug("processChangedBuildServer of Radiator model called, context = " + JSON.stringify(this));
+            LOG.debug("Include filter in radiator model processChangedBuildServer: " + this.getIncludeFilter());
+            LOG.debug("Exclude filter in radiator model processChangedBuildServer: " + this.getExcludeFilter());
+            LOG.debug("buildServer in radiator model processChangedBuildServer: " + this.get('buildServer'));
+        }
 
         var allJobs = this.copySortedJobList(this.getBuildServer().getJobs().toArray());
-        LOG.debug("Filtering all jobs, length=" + allJobs.length + " against includeFilter=" + this.getIncludeFilter() + ", excludeFilter=" + this.getExcludeFilter());
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Filtering all jobs, length=" + allJobs.length + " against includeFilter=" + this.getIncludeFilter() + ", excludeFilter=" + this.getExcludeFilter());
+        }
         var includedJobs = _.filter(allJobs, function(job){
             LOG.debug("Checking if job " + job + " is to be included");
             return this.isJobIncluded(job);
         }, this);
-        LOG.debug("includedJobs = " + JSON.stringify(includedJobs));
+        if(LOG.isDebugEnabled()){
+            LOG.debug("includedJobs = " + JSON.stringify(includedJobs));
+        }
         this.set('includedJobs', includedJobs, {silent: true});
-        LOG.debug("getIncludedJobs() = " + JSON.stringify(this.getIncludedJobs()));
+        if(LOG.isDebugEnabled()){
+            LOG.debug("getIncludedJobs() = " + JSON.stringify(this.getIncludedJobs()));
+        }
 
-        LOG.debug("Filtering included jobs, length=" + this.getIncludedJobs().length);
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Filtering included jobs, length=" + this.getIncludedJobs().length);
+        }
         var failingJobs = _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
             return job.isFailing();
         }, this);
@@ -61,20 +73,26 @@ JR.Radiator = Backbone.Model.extend({
 
     },
     copySortedJobList: function(list){
-        LOG.debug("Copying & sorting list of " + list.length + " elements");
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Copying & sorting list of " + list.length + " elements");
+        }
         return _.sortBy(list, function(job){
             return job.getName();
         });
     },
     isJobIncluded: function(job){
-        LOG.debug("Executing isJobIncluded method on job " + job + " in context this=" + JSON.stringify(this));
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Executing isJobIncluded method on job " + job + " in context this=" + JSON.stringify(this));
+        }
         var excludeFilter = this.getExcludeFilter();
         var jobExcludedByExcludeFilter = _.include(excludeFilter, job.getName());
         var includeFilter = this.getIncludeFilter();
         var includedJobsDefined = includeFilter.length>0;
         var jobIncludedByIncludeFilter = _.include(includeFilter, job.getName());
         var isIncluded = !jobExcludedByExcludeFilter && (!includedJobsDefined || jobIncludedByIncludeFilter);
-        LOG.debug("Is job " + job.getName() + " included in radiator? excludeFilter=, " + excludeFilter + ", includeFilter=" + includeFilter + ", jobExcludedByExcludeFilter=" + jobExcludedByExcludeFilter + ", includedJobsDefined=" + includedJobsDefined + ", jobIncludedByIncludeFilter=" + jobIncludedByIncludeFilter + ", isIncluded=" + isIncluded);
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Is job " + job.getName() + " included in radiator? excludeFilter=, " + excludeFilter + ", includeFilter=" + includeFilter + ", jobExcludedByExcludeFilter=" + jobExcludedByExcludeFilter + ", includedJobsDefined=" + includedJobsDefined + ", jobIncludedByIncludeFilter=" + jobIncludedByIncludeFilter + ", isIncluded=" + isIncluded);
+        }
         return isIncluded;
     },
     getBuildServer: function(){

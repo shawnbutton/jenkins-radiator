@@ -8,7 +8,9 @@ JR.RadiatorView = Backbone.View.extend({
         //this.model.bind('change', this.render);
     },
     render: function(){
-        LOG.debug("Rendering radiator view from radiator model");
+        if(LOG.isDebugEnabled()){
+            LOG.debug("Rendering radiator view from radiator model");
+        }
         this.renderHealth();
         this.renderMetrics();
         $('#container').html(this.el);
