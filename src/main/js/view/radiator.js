@@ -6,25 +6,21 @@ JR.RadiatorView = Backbone.View.extend({
     initialize: function(){
         _.bindAll(this, 'render');
         //this.model.bind('change', this.render);
+        this.renderLoadingForFirstTime();
+        this.lastSoundPlayed = "";
+    },
+    renderLoadingForFirstTime: function(){
+        $('#container').html(new JR.LoadingView().render().el);
     },
     render: function(){
         if(LOG.isDebugEnabled()){
             LOG.debug("Rendering radiator view from radiator model");
         }
         this.renderHealth();
+        this.renderAudio();
         this.renderMetrics();
         $('#container').html(this.el);
         return this;
-    },
-    renderMetrics: function(){
-        var metricsWrapperView = new JR.BuildMetricWrapperView({
-            passingJobCount: this.model.getPassingJobsCount(),
-            failingJobCount: this.model.getFailingJobsCount(),
-            buildingJobCount: this.model.getBuildingJobsCount(),
-            disabledJobCount: this.model.getDisabledJobsCount()
-        });
-        metricsWrapperView.render();
-        this.$el.append(metricsWrapperView.el);
     },
     renderHealth: function(){
         // This view is displayed if all jobs are passing
@@ -44,5 +40,24 @@ JR.RadiatorView = Backbone.View.extend({
             this.jobsFailingView.$el.hide();
             this.jobsPassingView.$el.show();
         }
+    },
+    renderAudio: function(){
+        if (this.model.buildsAreFailing() && this.lastSoundPlayed != "boo") {
+            this.lastSoundPlayed = "boo";
+            $("audio#booing-audio")[0].play();
+        }else if (this.model.buildsArePassing() && this.lastSoundPlayed != "cheer"){
+            this.lastSoundPlayed = "cheer";
+            $("audio#cheering-audio")[0].play();
+        }
+    },
+    renderMetrics: function(){
+        var metricsWrapperView = new JR.BuildMetricWrapperView({
+            passingJobCount: this.model.getPassingJobsCount(),
+            failingJobCount: this.model.getFailingJobsCount(),
+            buildingJobCount: this.model.getBuildingJobsCount(),
+            disabledJobCount: this.model.getDisabledJobsCount()
+        });
+        metricsWrapperView.render();
+        this.$el.append(metricsWrapperView.el);
     }
 });

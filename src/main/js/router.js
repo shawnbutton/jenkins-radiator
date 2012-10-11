@@ -8,6 +8,8 @@ JR.AppRouter = Backbone.Router.extend({
 
     builds: function(configIdx){
         this.selectConfig(configIdx);
+        var titleView = new JR.RadiatorTitleView({model: config});
+
         var model = new JR.BuildServer();
         var buildServerView = new JR.BuildServerView({model: model});
         model.fetch({success: function(model, response){
@@ -32,6 +34,7 @@ JR.AppRouter = Backbone.Router.extend({
         if(LOG.isDebugEnabled()){
             LOG.debug("Using config: " + JSON.stringify(config));
         }
+        var titleView = new JR.RadiatorTitleView({model: config});
 
         var buildServer = new JR.BuildServer();
 

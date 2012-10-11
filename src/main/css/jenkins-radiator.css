@@ -6,6 +6,10 @@ body{
   padding:0;
 }
 
+.build-health.passing {
+    background-color: lightgreen;
+}
+
 .build-metric .Passing-count {
   background-color: lightgreen;
 }
