@@ -3,12 +3,18 @@ JR.LoadingView = Backbone.View.extend({
     className:'span12 build-health',
     initialize: function(){
         _.bindAll(this, 'render');
+        this.model.bind('change', this.render);
     },
     render: function(){
-        var template = '<h1 class="loading">Loading...</h1>';
-        var json = {};
+        var template = '<h1 class="loading">Loading</h1><p>{{secondsPassed}}</p>';
+        var json = {
+            secondsPassed: Array(this.model.get('secondsPassed')).join(".")
+        };
         var output = Mustache.to_html(template, json);
-        $(this.el).html(output);
+        if(this.model.get('enabled')==true){
+            $(this.el).html(output);
+            $('#container').html(this.el);
+        }
         return this;
     }
 });

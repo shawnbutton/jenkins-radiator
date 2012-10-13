@@ -3,23 +3,46 @@ JR.RadiatorView = Backbone.View.extend({
     // The default is div
     tagName: "div",
     className: "build-health-wrapper row-fluid",
+    loadingTimer: null,
+    loadingView: null,
+    loadingInterval : null,
+    loading: function(){
+        LOG.info("Loading");
+        this.loadingTimer = new JR.LoadingTimer({secondsPassed:0, enabled:true});
+        this.loadingView = new JR.LoadingView({model: this.loadingTimer});
+        this.loadingView.render();
+        _.bindAll(this, 'updateLoadingTimer');
+        _.bindAll(this, 'loaded');
+        this.loadingInterval = setInterval(this.updateLoadingTimer, 1000);
+    },
+    updateLoadingTimer: function(){
+        LOG.info("Loading more");
+        this.loadingTimer.set('secondsPassed', this.loadingTimer.get('secondsPassed')+1);
+    },
+    loaded: function(){
+        LOG.info("Loaded");
+        clearInterval(this.loadingInterval);
+        this.loadingView.remove();
+    },
     initialize: function(){
         _.bindAll(this, 'render');
-        //this.model.bind('change', this.render);
-        this.renderLoadingForFirstTime();
+        this.model.bind('change', this.render);
         this.lastSoundPlayed = "";
-    },
-    renderLoadingForFirstTime: function(){
-        $('#container').html(new JR.LoadingView().render().el);
+        this.loading();
     },
     render: function(){
         if(LOG.isDebugEnabled()){
             LOG.debug("Rendering radiator view from radiator model");
         }
-        this.renderHealth();
-        this.renderAudio();
-        this.renderMetrics();
-        $('#container').html(this.el);
+        if(this.model.get('loaded')){
+            this.loaded();
+            this.renderHealth();
+            this.renderAudio();
+            this.renderMetrics();
+            $('#container').html(this.el);
+        }else{
+            $('#container').html(this.loadingView.el);
+        }
         return this;
     },
     renderHealth: function(){

@@ -20,9 +20,9 @@ JR.Radiator = Backbone.Model.extend({
             LOG.debug("Initialize of Radiator model called");
         }
         _.bindAll(this, 'processChangedBuildServer');
-        //this.bind("change", this.processChangedBuildServer);
+        this.bind("change", this.processChangedBuildServer);
         // Do the initial preprocessing after consructing this model
-        this.processChangedBuildServer();
+        //this.processChangedBuildServer();
     },
     processChangedBuildServer: function(){
         if(LOG.isDebugEnabled()){

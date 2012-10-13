@@ -5,7 +5,6 @@ JR.AppRouter = Backbone.Router.extend({
         "builds/:configIdx":    "builds",  // #builds/0
         "radiator/:configIdx":  "radiator"  // #radiator/0
     },
-
     builds: function(configIdx){
         this.selectConfig(configIdx);
         var titleView = new JR.RadiatorTitleView({model: config});
@@ -41,7 +40,8 @@ JR.AppRouter = Backbone.Router.extend({
         var radiator = new JR.Radiator({
             "buildServer": buildServer,
             "includeFilter":config.includeFilter,
-            "excludeFilter":config.excludeFilter
+            "excludeFilter":config.excludeFilter,
+            loaded: false
         });
         if(LOG.isDebugEnabled()){
             LOG.debug("Radiator model created");
@@ -51,27 +51,27 @@ JR.AppRouter = Backbone.Router.extend({
         if(LOG.isDebugEnabled()){
             LOG.debug("Radiator view created");
         }
+        radiatorView.render();
 
+        var loading=true;
         var fetchAndRender =  function(){
             buildServer.fetch({success: function(model, response){
                 if(LOG.isDebugEnabled()){
                     LOG.debug("Fetched build server model");
                 } //: " + JSON.stringify(model));
                 //radiator.trigger("change:buildServer");
+                radiator.set('loaded', true, {silent: true});
                 radiator.set('buildServer', buildServer);
+
                 // TODO: This should be triggered by the set
-                radiator.processChangedBuildServer();
+                //radiator.processChangedBuildServer();
+                // If we have shown the initial loading, then hide it
                 // TODO: This should happen automatically...
-                radiatorView.render();
+                //radiatorView.render();
             }, error: function(model, response){
                 LOG.error("Fetching build server model failed, radiator view not rendered. Model: " + JSON.stringify(model) + ", response: " + JSON.stringify(response));
             }});
         };
-        fetchAndRender();
-        if(LOG.isDebugEnabled()){
-            LOG.debug("Data fetched once");
-        }
-
         if(LOG.isDebugEnabled()){
             LOG.debug("Refreshing every " + config.refresh_interval/1000 + " seconds as specified by config.refresh_interval");
         }

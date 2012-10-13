@@ -26,12 +26,14 @@ var configs = [
 
 ];
 
-var loggingConfig = {
-    debug: false
-}
-
 // By default use first config.
 // Url parameter config=1 can be used to select another, like this:
 // jenkins-radiator/index.html?config=1
 // defaults to 0, i.e. jenkins-radiator/index.html?config=0
 var config = configs[0];
+
+// Logging configuration, levels the same as Log4j has
+var loggingConfig = {
+    debug: false,
+    info: true
+}
