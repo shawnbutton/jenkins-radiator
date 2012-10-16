@@ -8,7 +8,8 @@ JR.RadiatorTitleView = Backbone.View.extend({
             '<div class="span12 radiator-title">' +
             '<h1 id="radiatorTitle">{{radiatorTitle}}</h1>' +
             '</div>' +
-            '</div';
+            '<div id="radiator-loading-indicator"><img src="img/ajax-loader.gif"/></div>' +
+            '</div>';
         var json = this.model;
         var output = Mustache.to_html(template, json);
         $(this.el).html(output);

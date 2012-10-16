@@ -14,7 +14,7 @@ JR.AppRouter = Backbone.Router.extend({
         model.fetch({success: function(model, response){
             if(LOG.isDebugEnabled()){
                 LOG.debug("Fetched build server model");
-            } //: " + JSON.stringify(model));
+            }
             //radiator.trigger("change:buildServer");
             buildServerView.render();
         }, error: function(model, response){
@@ -40,34 +40,25 @@ JR.AppRouter = Backbone.Router.extend({
         var radiator = new JR.Radiator({
             "buildServer": buildServer,
             "includeFilter":config.includeFilter,
-            "excludeFilter":config.excludeFilter,
-            loaded: false
+            "excludeFilter":config.excludeFilter
         });
         if(LOG.isDebugEnabled()){
             LOG.debug("Radiator model created");
         }
 
         var radiatorView = new JR.RadiatorView({model: radiator});
-        if(LOG.isDebugEnabled()){
-            LOG.debug("Radiator view created");
-        }
-        radiatorView.render();
-
-        var loading=true;
         var fetchAndRender =  function(){
+            radiatorView.trigger('loading');
             buildServer.fetch({success: function(model, response){
                 if(LOG.isDebugEnabled()){
                     LOG.debug("Fetched build server model");
-                } //: " + JSON.stringify(model));
-                //radiator.trigger("change:buildServer");
-                radiator.set('loaded', true, {silent: true});
+                }
                 radiator.set('buildServer', buildServer);
-
-                // TODO: This should be triggered by the set
-                //radiator.processChangedBuildServer();
-                // If we have shown the initial loading, then hide it
-                // TODO: This should happen automatically...
-                //radiatorView.render();
+                if(LOG.isDebugEnabled()){
+                    LOG.debug("Triggering change of radiator model");
+                }
+                radiatorView.trigger('loaded');
+                radiator.trigger('change');
             }, error: function(model, response){
                 LOG.error("Fetching build server model failed, radiator view not rendered. Model: " + JSON.stringify(model) + ", response: " + JSON.stringify(response));
             }});
@@ -75,6 +66,7 @@ JR.AppRouter = Backbone.Router.extend({
         if(LOG.isDebugEnabled()){
             LOG.debug("Refreshing every " + config.refresh_interval/1000 + " seconds as specified by config.refresh_interval");
         }
+        fetchAndRender();
         setInterval(fetchAndRender, config.refresh_interval);
     },
     selectConfig: function(configIdx){

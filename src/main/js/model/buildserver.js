@@ -9,8 +9,8 @@ JR.BuildServer = JR.BaseModel.extend({
         return url;
     },
     sync: function(method, model, options) {
-        if(LOG.isDebugEnabled()){
-            LOG.debug("About to sync. Method " + method + ", options=" + JSON.stringify(options));
+        if(LOG.isTraceEnabled()){
+            LOG.trace("About to sync. Method " + method + ", options=" + JSON.stringify(options));
         }
         var params = _.extend({
             type: 'GET',

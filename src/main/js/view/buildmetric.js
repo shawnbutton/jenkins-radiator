@@ -7,7 +7,7 @@ JR.BuildMetricView = Backbone.View.extend({
         var output = Mustache.to_html(template, this.options);
         $(this.el).html(output);
         //$(this.el).addClass('build-metrics-wrapper');
-        $(this.el).addClass('span3');
+        $(this.el).addClass('span2');
         $(this.el).addClass('build-metric');
         $(this.el).addClass(this.options.title+"-count");
         return this;

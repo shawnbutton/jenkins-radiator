@@ -43,11 +43,18 @@ body{
 
 .radiator-title-wrapper{
 	text-align:center;
+    background:#AAA;
 }
 
 .build-metrics-wrapper{
   position:absolute;
   bottom:0;
+}
+
+#radiator-loading-indicator{
+    position:absolute;
+    top:0px;
+    right:0px;
 }
 
 .build-metric{

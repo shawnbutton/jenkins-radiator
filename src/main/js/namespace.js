@@ -17,4 +17,4 @@ consoleAppender.setLayout(layout);
 LOG.addAppender(consoleAppender);
 
 // Set level
-LOG.setLevel(log4javascript.Level.INFO);
+LOG.setLevel(log4javascript.Level.DEBUG);
