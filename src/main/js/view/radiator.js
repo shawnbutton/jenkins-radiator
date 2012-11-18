@@ -7,21 +7,8 @@ JR.RadiatorView = Backbone.View.extend({
         _.bindAll(this, 'render');
         this.model.bind('change', this.render);
 
-        _.bindAll(this, 'loading');
-        this.bind('loading', this.loading);
-        _.bindAll(this, 'loaded');
-        this.bind('loaded', this.loaded);
-
         this.lastSoundPlayed = "";
         this.initializeViews();
-    },
-    loading: function(){
-        LOG.info("Loading...");
-        $('#radiator-loading-indicator').show();
-    },
-    loaded: function(){
-        LOG.info("...Loaded");
-        $('#radiator-loading-indicator').hide();
     },
     initializeViews: function(){
         if(LOG.isDebugEnabled()){

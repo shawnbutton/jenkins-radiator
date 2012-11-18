@@ -6,6 +6,19 @@ body{
   padding:0;
 }
 
+div.config{
+    padding-bottom:2em;
+}
+
+div.config .table, div.config .urls{
+    padding-left:2em;
+}
+
+div.config table td, div.config table th
+{
+    text-align:left;
+}
+
 .build-health.passing {
     background-color: lightgreen;
 }

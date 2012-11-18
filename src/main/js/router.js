@@ -11,12 +11,14 @@ JR.AppRouter = Backbone.Router.extend({
 
         var model = new JR.BuildServer();
         var buildServerView = new JR.BuildServerView({model: model});
+        titleView.trigger('loading');
         model.fetch({success: function(model, response){
             if(LOG.isDebugEnabled()){
                 LOG.debug("Fetched build server model");
             }
             //radiator.trigger("change:buildServer");
             buildServerView.render();
+            titleView.trigger('loaded');
         }, error: function(model, response){
             LOG.error("Fetching build server model failed, radiator view not rendered. Model: " + JSON.stringify(model) + ", response: " + JSON.stringify(response));
         }});
@@ -48,7 +50,7 @@ JR.AppRouter = Backbone.Router.extend({
 
         var radiatorView = new JR.RadiatorView({model: radiator});
         var fetchAndRender =  function(){
-            radiatorView.trigger('loading');
+            titleView.trigger('loading');
             buildServer.fetch({success: function(model, response){
                 if(LOG.isDebugEnabled()){
                     LOG.debug("Fetched build server model");
@@ -57,7 +59,7 @@ JR.AppRouter = Backbone.Router.extend({
                 if(LOG.isDebugEnabled()){
                     LOG.debug("Triggering change of radiator model");
                 }
-                radiatorView.trigger('loaded');
+                titleView.trigger('loaded');
                 radiator.trigger('change');
             }, error: function(model, response){
                 LOG.error("Fetching build server model failed, radiator view not rendered. Model: " + JSON.stringify(model) + ", response: " + JSON.stringify(response));

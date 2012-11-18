@@ -15,18 +15,21 @@ JR.ConfigView = Backbone.View.extend({
 //        "radiator/:configIdx":  "radiator"  // #radiator/0
 
         var template = "<span style=\"width:100%\">" +
+            "<div class='config'>" +
             "<h1>{{radiatorTitle}}</h1>" +
+            "<div class='table'>" +
             "<table>" +
             "<tr><th>Url</th><td>{{ci_json_url}}</td></tr>" +
             "<tr><th>Refresh interval</th><td>{{refresh_interval}}ms</td></tr>" +
             "<tr><th>Exclude filter</th><td>{{excludeFilter}}</td></tr>" +
             "<tr><th>Include filter</th><td>{{includeFilter}}</td></tr>" +
             "</table>" +
-            "<h2>Builds</h2>" +
-            "<p><a href='#builds/{{idx}}'>Builds</a></p>" +
-            "<h2>Radiator</h2>" +
-            "<p><a href='#radiator/{{idx}}'>Radiator</a></p>" +
-            "</span>";
+            "</div>" +
+            "<div class='urls'>" +
+            "<p><a href='#builds/{{idx}}'>List all builds from server</a></p>" +
+            "<p><a href='#radiator/{{idx}}'>Show radiator</a></p>" +
+            "</div>" +
+            "</div>";
         var json = this.options.config;
         json.idx = this.options.configIdx;
         if(LOG.isDebugEnabled()){

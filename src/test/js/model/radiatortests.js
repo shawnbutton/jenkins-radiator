@@ -51,6 +51,7 @@ test("When exclude or include filters are not defined, all jobs from build serve
         radiator = new JR.Radiator(params);
         console.log("radiator.isValid(): " + radiator.isValid());
         ok(radiator.isValid(), "Radiator is valid");
+        radiator.processChangedBuildServer();
     }catch(err){
         ok(false, "Must not get here: " + JSON.stringify(err));
     }
@@ -58,7 +59,6 @@ test("When exclude or include filters are not defined, all jobs from build serve
     equal(radiator.getBuildServer().getJobs().length, 8, "Build server model of radiator has expected amount of jobs");
     equal(radiator.getIncludeFilter().length, 0, "Radiator include filter has expected amount of job names");
     ok(radiator.getIncludedJobs(), "Radiator has expected jobs array");
-    equal(radiator.getIncludedJobs().length, 8, "Radiator has expected amount of included jobs in array");
     equal(radiator.getIncludedJobsCount(), 8, "Radiator reports expected amount of included jobs");
 });
 
@@ -82,6 +82,7 @@ test("When include filter is defined, only included jobs from build server are i
         radiator = new JR.Radiator(params);
         console.log("radiator.isValid(): " + radiator.isValid());
         ok(radiator.isValid(), "Radiator is valid");
+        radiator.processChangedBuildServer();
     }catch(err){
         ok(false, "Must not get here: " + JSON.stringify(err));
     }
@@ -114,6 +115,7 @@ test("When exclude filter is defined, only non excluded jobs from build server a
         radiator = new JR.Radiator(params);
         console.log("radiator.isValid(): " + radiator.isValid());
         ok(radiator.isValid(), "Radiator is valid");
+        radiator.processChangedBuildServer();
     }catch(err){
         ok(false, "Must not get here: " + JSON.stringify(err));
     }
@@ -150,6 +152,7 @@ test("When exclude and include filters are defined, only non excluded jobs and i
         radiator = new JR.Radiator(params);
         console.log("radiator.isValid(): " + radiator.isValid());
         ok(radiator.isValid(), "Radiator is valid");
+        radiator.processChangedBuildServer();
     }catch(err){
         ok(false, "Must not get here: " + JSON.stringify(err));
     }
