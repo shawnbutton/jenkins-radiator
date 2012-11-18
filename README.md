@@ -51,13 +51,13 @@ A setup of Firefox with Tab Slideshow plugin is a really easy way to setup a mon
 
 ### Screenshots
 
-![Passing](jenkins-radiator/documentation/screenshots/passing.png "All included jobs passing")
-![Failing](jenkins-radiator/documentation/screenshots/failing.png "Radiator view when an included job is failing")
-![Index page shows configurations](jenkins-radiator/documentation/screenshots/index.png "Index page lists what radiators have been configured")
-![More configurations from index page](jenkins-radiator/documentation/screenshots/index2.png "Even more configured radiators from index page")
-![Massive amount of Apache jobs handled](jenkins-radiator/documentation/screenshots/818jobshandled.png "818 Apache Jobs handled")
-![Basic configuration of different radiator views](jenkins-radiator/documentation/screenshots/config.png "Configuration of different radiator views")
-![Logging configuration](jenkins-radiator/documentation/screenshots/config2.png "Configuration of logging")
+![Passing](jenkins-radiator/master/documentation/screenshots/passing.png "All included jobs passing")
+![Failing](jenkins-radiator/master/documentation/screenshots/failing.png "Radiator view when an included job is failing")
+![Index page shows configurations](jenkins-radiator/master/documentation/screenshots/index.png "Index page lists what radiators have been configured")
+![More configurations from index page](jenkins-radiator/master/documentation/screenshots/index2.png "Even more configured radiators from index page")
+![Massive amount of Apache jobs handled](jenkins-radiator/master/documentation/screenshots/818jobshandled.png "818 Apache Jobs handled")
+![Basic configuration of different radiator views](jenkins-radiator/master/documentation/screenshots/config.png "Configuration of different radiator views")
+![Logging configuration](jenkins-radiator/master/documentation/screenshots/config2.png "Configuration of logging")
 
 ### Improvement ideas
 Following things could be implemented:
