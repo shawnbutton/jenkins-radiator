@@ -51,13 +51,13 @@ A setup of Firefox with Tab Slideshow plugin is a really easy way to setup a mon
 
 ### Screenshots
 
-![Passing](http://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/passing.png "All included jobs passing")
-![Failing](http://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/failing.png "Radiator view when an included job is failing")
-![Index page shows configurations](http://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/index.png "Index page lists what radiators have been configured")
-![More configurations from index page](http://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/index2.png "Even more configured radiators from index page")
-![Massive amount of Apache jobs handled](http://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/818jobshandled.png "818 Apache Jobs handled")
-![Basic configuration of different radiator views](http://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/config.png "Configuration of different radiator views")
-![Logging configuration](http://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/config2.png "Configuration of logging")
+![Passing](https://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/passing.png "All included jobs passing")
+![Failing](https://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/failing.png "Radiator view when an included job is failing")
+![Index page shows configurations](https://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/index.png "Index page lists what radiators have been configured")
+![More configurations from index page](https://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/index2.png "Even more configured radiators from index page")
+![Massive amount of Apache jobs handled](https://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/818jobshandled.png "818 Apache Jobs handled")
+![Basic configuration of different radiator views](https://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/config.png "Configuration of different radiator views")
+![Logging configuration](https://raw.github.com/kogitant/jenkins-radiator/master/documentation/screenshots/config2.png "Configuration of logging")
 
 
 ### Improvement ideas
