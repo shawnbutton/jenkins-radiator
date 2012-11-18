@@ -6,52 +6,27 @@ body{
   padding:0;
 }
 
-div.config{
-    padding-bottom:2em;
-}
 
-div.config .table, div.config .urls{
-    padding-left:2em;
-}
 
+/*
+* Help view specific
+*/
+div.config-view .span12{
+    padding:0.5em 1em;
+}
 div.config table td, div.config table th
 {
     text-align:left;
 }
 
-.build-health.passing {
-    background-color: lightgreen;
-}
 
-.build-metric .Passing-count {
-  background-color: lightgreen;
-}
 
-.build-metric .Failing-count {
-  padding: 0 20px;
-}
-
-.build-metric .Building-count {
-
-}
-
-.build-metric .Disabled-count {
-
-}
-
-.build-health.passing div.icon{
-  display:block;
-  line-height:600px;
+.icon{
+    display:block;
   color:white;
-  font-weight:800;
-  font-size:125px;
-  min-height:3000px;
   text-align:center;
-}
-
-.build-height.passing div.icon span{
-  font-size:72px;
-  color:#333;
+    font-size:20em;
+    line-height: 1.25em;
 }
 
 .radiator-title-wrapper{
@@ -60,8 +35,18 @@ div.config table td, div.config table th
 }
 
 .build-metrics-wrapper{
-  position:absolute;
-  bottom:0;
+    position:fixed;
+    bottom:0px;
+}
+
+.build-metrics-footer{
+    position:fixed;
+    width:100%;
+    bottom:0px;
+    border-top:thin solid #666;
+    padding:0em 0.5em 0em 0.5em;
+    background:#AAA;
+    font-size:0.8em;
 }
 
 #radiator-loading-indicator{
@@ -72,6 +57,7 @@ div.config table td, div.config table th
 
 .build-metric{
   text-align:center;
+  margin-bottom:1em;
 }
 
 .build-metric h1{
@@ -90,9 +76,7 @@ div.config table td, div.config table th
 }
 
 .job-view {
-  background-color: red;
-  padding: 10px;
-  margin: 10px 0;
+  margin:0.8em 0em;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;

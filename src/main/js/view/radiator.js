@@ -1,8 +1,4 @@
 JR.RadiatorView = Backbone.View.extend({
-    //id: 'container',
-    // The default is div
-    tagName: "div",
-    className: "build-health-wrapper row-fluid",
     initialize: function(){
         _.bindAll(this, 'render');
         this.model.bind('change', this.render);
@@ -29,15 +25,15 @@ JR.RadiatorView = Backbone.View.extend({
         this.buildMetrics = new JR.BuildMetrics({
             includedJobCount: this.model.getIncludedJobsCount(),
             passingJobCount: this.model.getPassingJobsCount(),
+            unstableJobCount: this.model.getUnstableJobsCount(),
             failingJobCount: this.model.getFailingJobsCount(),
             buildingJobCount: this.model.getBuildingJobsCount(),
-            disabledJobCount: this.model.getDisabledJobsCount()
+            disabledJobCount: this.model.getDisabledJobsCount(),
+            abortedJobCount: this.model.getAbortedJobsCount()
         });
         this.metricsWrapperView = new JR.BuildMetricWrapperView({model:this.buildMetrics});
         this.metricsWrapperView.render();
         this.$el.append(this.metricsWrapperView.el);
-
-        $('#container').html(this.el);
     },
     render: function(){
         if(LOG.isDebugEnabled()){
@@ -52,6 +48,8 @@ JR.RadiatorView = Backbone.View.extend({
         this.buildMetrics.set('failingJobCount', this.model.getFailingJobsCount());
         this.buildMetrics.set('buildingJobCount', this.model.getBuildingJobsCount());
         this.buildMetrics.set('disabledJobCount', this.model.getDisabledJobsCount());
+        this.buildMetrics.set('unstableJobCount', this.model.getUnstableJobsCount());
+        this.buildMetrics.set('abortedJobCount', this.model.getAbortedJobsCount());
         this.buildMetrics.trigger('change');
 
         // Render health indicators & audio
@@ -63,9 +61,11 @@ JR.RadiatorView = Backbone.View.extend({
         if (this.model.buildsAreFailing()) {
             this.jobsPassingView.$el.hide();
             this.jobsFailingView.$el.show();
+            $('body').css("background-color", 'white');
         }else{
             this.jobsFailingView.$el.hide();
             this.jobsPassingView.$el.show();
+            $('body').css("background-color", 'lightgreen');
         }
     },
     renderAudio: function(){

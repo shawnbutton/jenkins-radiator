@@ -22,7 +22,23 @@ var configs = [
         radiatorTitle: 'All Apache jobs',
         excludeFilter: [],
         includeFilter: []
+    },
+    {
+        ci_json_url:"http://www.ikasan.org/jenkins",
+        refresh_interval: 24000,
+        radiatorTitle: 'Ikasan',
+        excludeFilter: [],
+        includeFilter: []
+    },
+    {
+        ci_json_url:"http://www.pinkhq.com/jenkins",
+        refresh_interval: 24000,
+        radiatorTitle: 'PinkHQ',
+        excludeFilter: [],
+        includeFilter: []
     }
+
+
 
 ];
 

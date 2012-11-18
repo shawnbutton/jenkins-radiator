@@ -1,5 +1,5 @@
 JR.ConfigView = Backbone.View.extend({
-    className:"config-view",
+    className:"config-view row-fluid",
     initialize: function(){
         _.bindAll(this, 'render');
     },
@@ -14,8 +14,8 @@ JR.ConfigView = Backbone.View.extend({
 //        "builds/:configIdx":    "builds",  // #builds/0
 //        "radiator/:configIdx":  "radiator"  // #radiator/0
 
-        var template = "<span style=\"width:100%\">" +
-            "<div class='config'>" +
+        var template =
+            "<div class='config span12'>" +
             "<h1>{{radiatorTitle}}</h1>" +
             "<div class='table'>" +
             "<table>" +

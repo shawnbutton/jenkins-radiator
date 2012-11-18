@@ -2,7 +2,7 @@ JR.BuildServerView = Backbone.View.extend({
     //id: 'container',
     // The default is div
     tagName: "div",
-    className: "build-health-wrapper row-fluid",
+    className: "container-fluid",
     initialize: function(){
         _.bindAll(this, 'render');
         this.model.bind('change', this.render);

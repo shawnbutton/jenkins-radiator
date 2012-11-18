@@ -5,7 +5,24 @@ JR.AppRouter = Backbone.Router.extend({
         "builds/:configIdx":    "builds",  // #builds/0
         "radiator/:configIdx":  "radiator"  // #radiator/0
     },
+    timers: [],
+    clearAppUI: function(){
+        // Revert to default background color
+        $('body').css("background-color", 'white');
+        // Clear the container
+        $('#container').html("");
+        // Hide these unless explicitly wanted
+        $('#footer').hide();
+        $('#title').hide();
+
+        _.each(this.timers, function(timer){
+            window.clearInterval(timer);
+        }, this);
+        this.timers = [];
+    },
     builds: function(configIdx){
+        this.clearAppUI();
+
         this.selectConfig(configIdx);
         var titleView = new JR.RadiatorTitleView({model: config});
 
@@ -24,18 +41,23 @@ JR.AppRouter = Backbone.Router.extend({
         }});
     },
     help: function(){
+        this.clearAppUI();
+
         if(LOG.isDebugEnabled()){
             LOG.debug("Rendering help view");
         }
-        var helpView = new JR.HelpView({configs:configs});
-        $('#container').html(helpView.render().el);
+        var helpView = new JR.HelpView({el: $('#container'), configs:configs});
+        helpView.render();
     },
     radiator:function(configIdx){
+        this.clearAppUI();
+
         this.selectConfig(configIdx);
         if(LOG.isDebugEnabled()){
             LOG.debug("Using config: " + JSON.stringify(config));
         }
         var titleView = new JR.RadiatorTitleView({model: config});
+        $('#title').show();
 
         var buildServer = new JR.BuildServer();
 
@@ -48,7 +70,9 @@ JR.AppRouter = Backbone.Router.extend({
             LOG.debug("Radiator model created");
         }
 
-        var radiatorView = new JR.RadiatorView({model: radiator});
+        var radiatorView = new JR.RadiatorView({el: $('#container'), model: radiator});
+        $('#footer').show();
+
         var fetchAndRender =  function(){
             titleView.trigger('loading');
             buildServer.fetch({success: function(model, response){
@@ -69,7 +93,7 @@ JR.AppRouter = Backbone.Router.extend({
             LOG.debug("Refreshing every " + config.refresh_interval/1000 + " seconds as specified by config.refresh_interval");
         }
         fetchAndRender();
-        setInterval(fetchAndRender, config.refresh_interval);
+        this.timers.push(setInterval(fetchAndRender, config.refresh_interval));
     },
     selectConfig: function(configIdx){
         var idx=parseInt(configIdx, 10);

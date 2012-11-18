@@ -2,15 +2,16 @@ JR.HelpView = Backbone.View.extend({
     //id: 'container',
     // The default is div
     tagName: "div",
-    className: "build-health-wrapper row-fluid",
+    className: "row-fluid",
     render: function(){
         var idx=0;
         _.each(this.options.configs, function(config){
             this.$el.append(new JR.ConfigView({config: config, configIdx: idx++}).render().el);
         }, this);
 
-        var template = "<span style=\"width:100%\">" +
-            "<div class='config'>" +
+        var template =
+            "<div class='config-view row-fluid'>" +
+            "<div class='config span12'>" +
             "<h1>How to configure</h1>" +
             "<p>To configure this Jenkins Radiator, edit the <a href='config.js'>config.js</a> to specify</p>" +
             "<ul>" +
@@ -18,7 +19,8 @@ JR.HelpView = Backbone.View.extend({
             "<li>what jobs you want to include in a radiator, or</li>" +
             "<li>what jobs you want to exclude from a radiator</li>" +
             "</ul>" +
-            "<p>You can configure multiple build servers and radiators in the config.</p>"
+            "<p>You can configure multiple build servers and radiators in the config.</p>" +
+            "</div>" +
             "</div>";
         var output = Mustache.to_html(template, {});
         this.$el.append(output);

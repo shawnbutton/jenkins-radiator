@@ -1,13 +1,13 @@
 JR.JobView = Backbone.View.extend({
     // TODO: This is a "Job state view, displaying only the name & color indicating state"
-    className:"job-view",
+    className:"row-fluid job-view",
 
     initialize: function(){
         _.bindAll(this, 'render');
     },
 
     render: function(){
-        var template = "<span style=\"width:100%\"><h1>{{name}}</h1></span>";
+        var template = "<div class='span12'><span style=\"width:100%\"><h1>{{name}}</h1></span></div>";
         var json = this.model.toJSON();
         if(LOG.isTraceEnabled()){
             LOG.trace("Model as json: " + JSON.stringify(json));

@@ -3,7 +3,9 @@ JR.Radiator = Backbone.Model.extend({
     defaults: {
         "includedJobs": [],
         "passingJobs": [],
+        "unstableJobs": [],
         "failingJobs": [],
+        "abortedJobs": [],
         "buildingJobs": [],
         "disabledJobs": [],
         "includeFilter": [],
@@ -57,6 +59,16 @@ JR.Radiator = Backbone.Model.extend({
             return job.isFailing();
         }, this);
         this.set('failingJobs', failingJobs, {silent: true});
+
+        var unstableJobs = _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
+            return job.isUnstable();
+        }, this);
+        this.set('unstableJobs', unstableJobs, {silent: true});
+
+        var abortedJobs = _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
+            return job.isAborted();
+        }, this);
+        this.set('abortedJobs', abortedJobs, {silent: true});
 
         var passingJobs = _.filter(this.copySortedJobList(this.getIncludedJobs()), function(job){
             return job.isPassing();
@@ -118,6 +130,12 @@ JR.Radiator = Backbone.Model.extend({
     getPassingJobsCount: function(){
         return this.getPassingJobs().length;
     },
+    getUnstableJobs: function(){
+        return this.get('unstableJobs') || [];
+    },
+    getUnstableJobsCount: function(){
+        return this.getUnstableJobs().length;
+    },
     getFailingJobs: function(){
         return this.get('failingJobs') || [];
     },
@@ -135,6 +153,12 @@ JR.Radiator = Backbone.Model.extend({
     },
     getDisabledJobsCount: function(){
         return this.getDisabledJobs().length;
+    },
+    getAbortedJobs: function(){
+        return this.get('abortedJobs') || [];
+    },
+    getAbortedJobsCount: function(){
+        return this.getAbortedJobs().length;
     },
     buildsAreFailing: function(){
         return this.getFailingJobsCount()>0;

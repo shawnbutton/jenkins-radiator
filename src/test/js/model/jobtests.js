@@ -1,4 +1,10 @@
-module("model/job");
+module("model/job",
+    {
+        teardown: function() {
+            Backbone.Relational.store = new Backbone.Store();
+        }
+    }
+);
 test("Empty constructor", function(){
     var job = new JR.Job();
     ok(job);
