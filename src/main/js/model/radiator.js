@@ -163,9 +163,6 @@ JR.Radiator = Backbone.Model.extend({
     buildsAreFailing: function(){
         return this.getFailingJobsCount()>0;
     },
-    buildsAreUnstable: function(){
-        return this.getUnstableJobsCount() > 0;
-    },
     buildsArePassing: function(){
         return !this.buildsAreFailing();
     }

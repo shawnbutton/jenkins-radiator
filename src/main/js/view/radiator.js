@@ -58,7 +58,7 @@ JR.RadiatorView = Backbone.View.extend({
         return this;
     },
     renderHealth: function(){
-        if (this.shouldShowFailure()) {
+        if (this.model.buildsAreFailing()) {
             this.jobsPassingView.$el.hide();
             this.jobsFailingView.$el.show();
             $('body').css("background-color", 'white');
@@ -68,19 +68,12 @@ JR.RadiatorView = Backbone.View.extend({
             $('body').css("background-color", 'lightgreen');
         }
     },
-    shouldShowFailure: function() {
-        var showFailure = this.model.buildsAreFailing();
-        if (show_unstable_as_failure) {
-            showFailure = showFailure || this.model.buildsAreUnstable();
-        }
-        return showFailure;
-    },
     renderAudio: function(){
-        if (this.shouldShowFailure() && this.lastSoundPlayed != "boo") {
+        if (this.model.buildsAreFailing() && this.lastSoundPlayed != "boo") {
             this.lastSoundPlayed = "boo";
 //            $("audio#booing-audio")[0].play();
             $("audio#klaxon-audio")[0].play();
-        }else if (!this.shouldShowFailure() && this.lastSoundPlayed != "cheer"){
+        }else if (this.model.buildsArePassing() && this.lastSoundPlayed != "cheer"){
             this.lastSoundPlayed = "cheer";
             $("audio#cheering-audio")[0].play();
         }
