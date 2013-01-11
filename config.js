@@ -3,43 +3,20 @@
 
 var configs = [
     {
-        ci_json_url:"https://builds.apache.org",
-        refresh_interval: 24000,
-        radiatorTitle: 'A few Apache jobs',
-        excludeFilter: [],
-        includeFilter: ["ActiveMQ","Apache Wicket 6.0.x","Commons"]
-    },
-    {
-        ci_json_url:"https://builds.apache.org",
-        refresh_interval: 24000,
-        radiatorTitle: 'Only most likely passing Apache jobs',
-        excludeFilter: [],
-        includeFilter: ["Accumulo-1.3.x","Apache Wicket 1.4.x"]
-    },
-    {
-        ci_json_url:"https://builds.apache.org",
-        refresh_interval: 24000,
-        radiatorTitle: 'All Apache jobs',
+        ci_json_url:"http://builder:8080/api/json",
+        refresh_interval: 240000,
+        radiatorTitle: 'All Builds',
         excludeFilter: [],
         includeFilter: []
     },
     {
-        ci_json_url:"http://www.ikasan.org/jenkins",
-        refresh_interval: 24000,
-        radiatorTitle: 'Ikasan',
+        ci_json_url:"http://builder:8080/api/json",
+        refresh_interval: 240000,
+        radiatorTitle: 'Tornados Builds',
         excludeFilter: [],
-        includeFilter: []
-    },
-    {
-        ci_json_url:"http://www.pinkhq.com/jenkins",
-        refresh_interval: 24000,
-        radiatorTitle: 'PinkHQ',
-        excludeFilter: [],
-        includeFilter: []
+        includeFilter: ["ETR407PSConversation-trunk", "ETR407Utility-trunk", "PAPaymentWebservice-trunk",
+            "PCPaymentWebservice-trunk", "PlateMaintenance-trunk", "ETR407MALServices-trunk", "CustomerCDCMonitor-trunk"]
     }
-
-
-
 ];
 
 // By default use first config.
@@ -52,4 +29,4 @@ var config = configs[0];
 var loggingConfig = {
     debug: false,
     info: true
-}
+};
