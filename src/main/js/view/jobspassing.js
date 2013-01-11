@@ -6,7 +6,7 @@ JR.JobsPassingView = Backbone.View.extend({
     render: function(){
         var template = "<div class='span12'>" +
             "<div class=\"icon\">" +
-            "<i class=\"icon-heart icon-white\"></i>" +
+            "<i class=\"icon-ok-sign icon-white\"></i>" +
             "</div>" +
             "</div>";
         var output = Mustache.to_html(template, {});

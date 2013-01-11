@@ -63,9 +63,13 @@ JR.RadiatorView = Backbone.View.extend({
             this.jobsFailingView.$el.show();
             $('body').css("background-color", 'white');
         }else{
+            if (this.model.buildsAreUnstable()) {
+                $('body').css("background-color", 'yellow');
+            } else {
+                $('body').css("background-color", 'lightgreen');
+            }
             this.jobsFailingView.$el.hide();
             this.jobsPassingView.$el.show();
-            $('body').css("background-color", 'lightgreen');
         }
     },
     renderAudio: function(){
