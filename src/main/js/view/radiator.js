@@ -73,16 +73,21 @@ JR.RadiatorView = Backbone.View.extend({
         }
     },
     renderAudio: function(){
-        if (this.model.buildsAreFailing() && this.lastSoundPlayed != "boo") {
-            this.lastSoundPlayed = "boo";
-//            $("audio#booing-audio")[0].play();
-            $("audio#klaxon-audio")[0].play();
-        }else if (this.model.buildsAreUnstable() && this.lastSoundPlayed != "cry"){
-            this.lastSoundPlayed = "cry";
-            $("audio#crying-audio")[0].play();
-        }else if (!this.model.buildsAreUnstable() && this.model.buildsArePassing() && this.lastSoundPlayed != "cheer"){
-            this.lastSoundPlayed = "cheer";
-            $("audio#cheering-audio")[0].play();
+        if (this.model.buildsAreFailing()) {
+            if (this.lastSoundPlayed != "boo") {
+                this.lastSoundPlayed = "boo";
+                $("audio#klaxon-audio")[0].play();
+            }
+        }else if (this.model.buildsAreUnstable()) {
+            if (this.lastSoundPlayed != "cry") {
+                this.lastSoundPlayed = "cry";
+                $("audio#crying-audio")[0].play();
+            }
+        } else if (!this.model.buildsAreUnstable() && this.model.buildsArePassing()) {
+            if (this.lastSoundPlayed != "cheer") {
+                this.lastSoundPlayed = "cheer";
+                $("audio#cheering-audio")[0].play();
+            }
         }
     }
 });
