@@ -76,7 +76,7 @@ JR.RadiatorView = Backbone.View.extend({
         if (this.model.buildsAreFailing()) {
             if (this.lastSoundPlayed != "boo") {
                 this.lastSoundPlayed = "boo";
-                $("audio#klaxon-audio")[0].play();
+                $("audio#goatscream-audio")[0].play();
             }
         }else if (this.model.buildsAreUnstable()) {
             if (this.lastSoundPlayed != "cry") {
